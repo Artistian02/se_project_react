@@ -11,8 +11,7 @@ const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
     day: "numeric",
   });
   const username = "Terrence Tegegne";
-  const isAvatarSet = Boolean(avatar); // Define isAvatarSet based on the presence of an avatar
-
+  const isAvatarSet = Boolean(avatar);
   return (
     <header className="header">
       <div className="header__container">
