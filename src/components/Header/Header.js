@@ -16,9 +16,7 @@ const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
     <header className="header">
       <div className="header__container">
         <img src={WTWRlogo} alt="What to Wear logo" className="header__logo" />
-        <p className="header__date">
-          {currentDate}, {weatherLocation}
-        </p>
+        <p className="header__date">{currentDate}, Philadelphia</p>
       </div>
       <div className="header__nav">
         <nav className="navigation">
