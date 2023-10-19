@@ -1,18 +1,29 @@
 import "./Main.css";
+
 import ItemCard from "../ItemCard/ItemCard";
 import "../ItemCard/ItemCard.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { weatherOptions, day } from "../../utils/constants";
+import { weatherOptions } from "../../utils/constants";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import React, { useContext, useMemo } from "react";
 
-import { defaultClothingItems } from "../../utils/clothingItems";
-import { useMemo } from "react";
-function Main({ weatherTemp, onCardClick }) {
+function Main({
+  weatherTemp,
+  onCardClick,
+  clothingArr,
+  timeOfDay,
+  day = true,
+}) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
+
   const weatherType = useMemo(() => {
-    if (weatherTemp >= 86) {
+    const tempF = weatherTemp?.temperature?.F;
+    if (tempF >= 86) {
       return "hot";
-    } else if (weatherTemp >= 66 && weatherTemp <= 85) {
+    } else if (tempF >= 66 && tempF <= 85) {
       return "warm";
-    } else if (weatherTemp <= 65) {
+    } else if (tempF <= 65) {
       return "cold";
     }
   }, [weatherTemp]);
@@ -22,18 +33,22 @@ function Main({ weatherTemp, onCardClick }) {
     (option) => option.weatherType === weatherType && option.day === day
   )?.link;
 
-  const filteredCards = defaultClothingItems.filter((item) => {
-    return item.weatherType.toLowerCase() === weatherType;
+  const filteredCards = clothingArr.filter((item) => {
+    return item.weather.toLowerCase() === weatherType;
   });
-
   return (
     <main className="main">
-      <WeatherCard day={day} type="cloudy" weatherTemp={weatherTemp} />
+      <WeatherCard
+        weatherCard={weatherCardImage}
+        day={timeOfDay}
+        type="cloudy"
+        temp={temp}
+      />
       <section className="main__clothes">
         <div className="main__info">
           <div className="card__section">
             <p className="card__section-title">
-              Today is {weatherTemp}°F and it is {weatherType}
+              Today is {temp}° {currentTemperatureUnit} and it is {weatherType}
             </p>
             <p className="card__section-title_slash"> / </p>
             <p className="card__section-title">You may want to wear:</p>

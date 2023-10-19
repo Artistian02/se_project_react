@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./Header.css";
 import "./Navigation.css";
 import avatar from "../../images/avatar.svg";
 import WTWRlogo from "../../images/WTWRlogo.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
   if (!weatherTemp) return null;
@@ -11,14 +13,24 @@ const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
     day: "numeric",
   });
   const username = "Terrence Tegegne";
-  const isAvatarSet = Boolean(avatar);
+  const isAvatarSet = Boolean(avatar); // Define isAvatarSet based on the presence of an avatar
+
   return (
     <header className="header">
       <div className="header__container">
-        <img src={WTWRlogo} alt="What to Wear logo" className="header__logo" />
-        <p className="header__date">{currentDate}, Philadelphia</p>
+        <Link to="/">
+          <img
+            src={WTWRlogo}
+            alt="What to Wear logo"
+            className="header__logo"
+          />
+        </Link>{" "}
+        <p className="header__date">
+          {currentDate}, {weatherLocation}
+        </p>
       </div>
       <div className="header__nav">
+        <ToggleSwitch />
         <nav className="navigation">
           <ul className="navigation__container">
             <li>
@@ -28,7 +40,9 @@ const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
             </li>
             <li>
               <div className="navigation__link">
-                {username}
+                <Link className="header__username" to="/profile">
+                  {username}
+                </Link>
                 {avatar ? (
                   <span
                     className={`navigation__user ${

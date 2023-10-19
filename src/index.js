@@ -1,13 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
-import "../src/index.css";
+import "./index.css"; // Assuming index.css is in the same directory
+import { HashRouter } from "react-router-dom/cjs/react-router-dom.min";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
   </React.StrictMode>
 );
 reportWebVitals();
