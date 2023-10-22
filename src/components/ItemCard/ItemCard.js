@@ -1,3 +1,4 @@
+import React from "react";
 import "./ItemCard.css";
 
 const ItemCard = ({ item, onCardClick }) => {

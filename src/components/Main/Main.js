@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import "../ItemCard/ItemCard.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { weatherOptions } from "../../utils/constants";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContexts";
 import React, { useContext, useMemo } from "react";
 
 function Main({

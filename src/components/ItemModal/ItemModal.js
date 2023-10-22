@@ -1,3 +1,4 @@
+import React from "react";
 import "./ItemModal.css";
 import "../ModalWithForm/ModalWithForm.css";
 const ItemModal = ({ selectedCard, onClose }) => {
