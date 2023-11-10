@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import "../ItemCard/ItemCard.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { weatherOptions } from "../../utils/constants";
-import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContexts";
+//import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContexts";
 import React, { useContext, useMemo } from "react";
 
 function Main({
@@ -14,8 +14,8 @@ function Main({
   timeOfDay,
   day = true,
 }) {
-  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
+  //const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  //const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
 
   const weatherType = useMemo(() => {
     const tempF = weatherTemp?.temperature?.F;
@@ -33,7 +33,7 @@ function Main({
     (option) => option.weatherType === weatherType && option.day === day
   )?.link;
 
-  const filteredCards = clothingArr.filter((item) => {
+  const filteredCards = clothingArr?.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
   return (
@@ -42,20 +42,20 @@ function Main({
         weatherCard={weatherCardImage}
         day={timeOfDay}
         type="cloudy"
-        temp={temp}
+        temp={0}
       />
       <section className="main__clothes">
         <div className="main__info">
           <div className="card__section">
             <p className="card__section-title">
-              Today is {temp}° {currentTemperatureUnit} and it is {weatherType}
+              Today is {0}° {"test"} and it is {weatherType}
             </p>
             <p className="card__section-title_slash"> / </p>
             <p className="card__section-title">You may want to wear:</p>
           </div>
         </div>
         <div className="card__items">
-          {filteredCards.map((item) => (
+          {filteredCards?.map((item) => (
             <ItemCard
               item={item}
               key={item._id}

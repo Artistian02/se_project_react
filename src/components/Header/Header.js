@@ -25,9 +25,7 @@ const Header = ({ weatherTemp, weatherLocation, onCreateModal }) => {
             className="header__logo"
           />
         </Link>{" "}
-        <p className="header__date">
-          {currentDate}, {weatherLocation}
-        </p>
+        <p className="header__date">{currentDate}, New York</p>
       </div>
       <div className="header__nav">
         <ToggleSwitch />
